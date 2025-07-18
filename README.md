@@ -1,4 +1,4 @@
-# 🧩 OrgMIM
+# OrgMIM
 
 Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(under review)*.
 
@@ -6,7 +6,7 @@ Datasets, codes, and pretrained weights for **“Masked Image Modeling for Gener
 
 We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is shown below. The complete dataset and generated **membrane maps** are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
 
-![Dataset Details](./Figures/Details.jpg)
+<!-- ![Dataset Details](./Figures/Details.jpg) -->
 
 ## ⚙️ Environments
 
@@ -14,19 +14,19 @@ The complete Conda environment has been packaged for direct use. You can downloa
 
 ## 🔬 Pretraining with OrgMIM
 
-### 🧪 Generation of membrane maps
+### Generation of membrane maps
 
-### 🎯 Dual-branch masked image modeling
+### Dual-branch masked image modeling
 
 ## 📉 Downstream Fine-tuning
 
-### 🩺 nnUNet-based segmentation
+### nnUNet-based segmentation
 
 ## 🎨 Visual Results
 
-### 🧩 Mask reconstruction by directly loading the MIM learner
+### Mask reconstruction by directly loading the MIM learner
 
-### 📊 PCA visualization of dense embeddings from the vision foundation models
+### PCA visualization of dense embeddings from the vision foundation models
 
 ## 💾 Released Weights
 
