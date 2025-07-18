@@ -4,9 +4,8 @@ Datasets, codes, and pretrained weights for **“Masked Image Modeling for Gener
 
 ## Pretraining Database: IsoOrg-1K
 
-We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is presented ![below](./Figures/Details.jpg)
-. The complete dataset and generated **membrane maps** are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
-
+We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is presented below. The complete dataset and generated **membrane maps** are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
+![](./Figures/Details.jpg)
 ## Environments
 
 The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
