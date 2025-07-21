@@ -37,31 +37,18 @@ self.network = STUNet(
     conv_kernel_sizes=self.net_conv_kernel_sizes
 )
 
-# Move to GPU if available
-if torch.cuda.is_available():
-    self.network.cuda()
-
 # Load pretrained model weights
-saved_model = torch.load('orgmim_spark_b_learner.ckpt')
+saved_model = torch.load('/***/***/orgmim_spark_b_learner.ckpt')
 pretrained_dict = saved_model['model_weights']
-print(pretrained_dict.keys())
 
 # Process and load encoder weights into the current model
-new_file3 = OrderedDict()
+new_dict = OrderedDict()
 for old_key, value in pretrained_dict.items():
     if 'encoder' in old_key:
         new_key = old_key.split('sp_cnn.')[-1]
-        new_file3[new_key] = value
+        new_dict[new_key] = value
 
-self.network.load_state_dict(new_file3, strict=False)
-
-# Check loaded convolution block layers
-mod_dict = self.network.state_dict()
-for key, _ in mod_dict.items():
-    if 'conv_blocks' in key:
-        if key in new_file3 and mod_dict[key].shape == new_file3[key].shape:
-            print('This layer worked:', key)
-
+self.network.load_state_dict(new_dict, strict=False)
 ```
 
 
