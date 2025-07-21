@@ -23,6 +23,47 @@ The complete Conda environment has been packaged for direct use. You can downloa
 ### Dual-branch masked image modeling
 
 ## 📉 Downstream Fine-tuning
+```python
+import torch
+from collections import OrderedDict
+
+# Initialize network
+self.network = STUNet(
+    self.num_input_channels,
+    self.num_classes,
+    depth=[1, 1, 1, 1, 1, 1],
+    dims=[32, 64, 128, 256, 512, 512],
+    pool_op_kernel_sizes=self.net_num_pool_op_kernel_sizes,
+    conv_kernel_sizes=self.net_conv_kernel_sizes
+)
+
+# Move to GPU if available
+if torch.cuda.is_available():
+    self.network.cuda()
+
+# Load pretrained model weights
+saved_model = torch.load('orgmim_spark_b_learner.ckpt')
+pretrained_dict = saved_model['model_weights']
+print(pretrained_dict.keys())
+
+# Process and load encoder weights into the current model
+new_file3 = OrderedDict()
+for old_key, value in pretrained_dict.items():
+    if 'encoder' in old_key:
+        new_key = old_key.split('sp_cnn.')[-1]
+        new_file3[new_key] = value
+
+self.network.load_state_dict(new_file3, strict=False)
+
+# Check loaded convolution block layers
+mod_dict = self.network.state_dict()
+for key, _ in mod_dict.items():
+    if 'conv_blocks' in key:
+        if key in new_file3 and mod_dict[key].shape == new_file3[key].shape:
+            print('This layer worked:', key)
+
+```
+
 
 ### nnUNet-based segmentation
 
