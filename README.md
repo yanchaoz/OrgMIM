@@ -8,6 +8,10 @@ We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from 
 Meanwhile, we are actively curating and integrating organelle datasets from other platforms, and will continue to update this repository to support larger-scale pre-training in the future.
 <!-- ![Dataset Details](./Figures/Details.jpg) -->
 
+## 📊 Downstream Segmentation Datasets
+
+We conduct extensive experiments on four representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
+
 ## ⚙️ Environments
 
 The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
