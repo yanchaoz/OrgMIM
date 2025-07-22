@@ -23,6 +23,7 @@ The complete Conda environment has been packaged for direct use. You can downloa
 ### Dual-branch masked image modeling
 
 ## 📉 Downstream Fine-tuning
+### Pretrianed weights transfer
 ```python
 import torch
 from collections import OrderedDict
@@ -50,9 +51,6 @@ for old_key, value in pretrained_dict.items():
 
 self.network.load_state_dict(new_dict, strict=False)
 ```
-
-
-### nnUNet-based segmentation
 
 ## 🎨 Visual Results
 
