@@ -1,6 +1,6 @@
 # OrgMIM
 
-Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(under review)*.
+Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(under review)*
 
 ## 🗂️ Pretraining Database: IsoOrg-1K
 
