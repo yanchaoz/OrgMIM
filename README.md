@@ -70,6 +70,16 @@ affs_uint8 = np.uint8(255 * affs_resized)
 
 ### Dual-branch masked image modeling
 
+After downloading the dataset, simply run the following script to start training OrgMIM:
+
+```bash
+python dual_branch_mim.py --config configs/orgmim.yaml
+```
+To run it in distributed mode (e.g., on 4 GPUs):
+```bash
+torchrun --nproc_per_node=4 dual_branch_mim_dp.py --config configs/orgmim.yaml
+```
+
 ## 📉 Downstream Fine-tuning
 ### Pretrianed weights transfer on STU-Net (CNN-based)
 ```python
