@@ -70,6 +70,7 @@ self.network =  UNETR(
                 skip_connection=False,
                 show_feature=False,
                 dropout_rate=0.0)
+
 # Load pretrained model weights
 saved_model = torch.load('/***/***/orgmim_mae_b_learner.ckpt')
 vit_state_dict = checkpoint['model_weights']
