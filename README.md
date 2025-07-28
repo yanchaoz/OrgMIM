@@ -62,6 +62,12 @@ affs_resized = nearest_neighbor_resize(affs, (512, 512))
 # Convert affinity map to uint8 format for saving or visualization
 affs_uint8 = np.uint8(255 * affs_resized)
 ```
+
+| Function / Class             | Defined In           | Description                                      |
+|-----------------------------|----------------------|--------------------------------------------------|
+| `embeddings_to_affinities`  | `mam_utils.py`  | Converts pixel embeddings into affinity maps     |
+| `nearest_neighbor_resize`   | `mam_utils.py`     | Resizes 2D arrays using nearest neighbor interpolation |
+
 ### Dual-branch masked image modeling
 
 ## 📉 Downstream Fine-tuning
