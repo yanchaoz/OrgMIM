@@ -71,7 +71,7 @@ affs_uint8 = np.uint8(255 * affs_resized)
 ### Dual-branch masked image modeling
 
 ## 📉 Downstream Fine-tuning
-### Pretrianed weights transfer on STU-Net
+### Pretrianed weights transfer on STU-Net (CNN-based)
 ```python
 import torch
 from collections import OrderedDict
@@ -99,7 +99,7 @@ for old_key, value in pretrained_dict.items():
 
 self.network.load_state_dict(new_dict, strict=False)
 ```
-### Pretrianed weights transfer on UNETR
+### Pretrianed weights transfer on UNETR (ViT-based)
 ```python
 # Initialize network
 self.network =  UNETR(
