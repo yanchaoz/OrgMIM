@@ -23,7 +23,7 @@ The complete Conda environment has been packaged for direct use. You can downloa
 ### Dual-branch masked image modeling
 
 ## 📉 Downstream Fine-tuning
-### Pretrianed weights transfer
+### Pretrianed weights transfer on STU-Net
 ```python
 import torch
 from collections import OrderedDict
@@ -51,7 +51,30 @@ for old_key, value in pretrained_dict.items():
 
 self.network.load_state_dict(new_dict, strict=False)
 ```
-
+### Pretrianed weights transfer on UNETR
+```python
+# Initialize network
+self.network =  UNETR(
+                in_channels=self.num_input_channels,
+                out_channels=self.num_classes,
+                img_size=(128, 128, 128),
+                patch_size=(16, 16, 16),
+                feature_size=16,
+                hidden_size=768,
+                mlp_dim=3072,
+                num_heads=12,
+                norm_name='instance',
+                conv_block=True,
+                res_block=True,
+                kernel_size=3,
+                skip_connection=False,
+                show_feature=False,
+                dropout_rate=0.0)
+# Load pretrained model weights
+saved_model = torch.load('/***/***/orgmim_mae_b_learner.ckpt')
+vit_state_dict = checkpoint['model_weights']
+self.network.vit.load_state_dict(vit_state_dict, strict=False)
+```
 ## 🎨 Visual Results
 
 ### Mask reconstruction by directly loading the MIM learner
