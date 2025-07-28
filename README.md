@@ -19,7 +19,49 @@ The complete Conda environment has been packaged for direct use. You can downloa
 ## 🔬 Pretraining with OrgMIM
 
 ### Generation of membrane maps
+#### Step 1. Loading a Visual Foundation Model
+First, install the [Segment Anything](https://github.com/facebookresearch/segment-anything) package:
 
+```bash
+pip install git+https://github.com/facebookresearch/segment-anything.git
+```
+Then, load the SAM model and weights in Python:
+```python
+from segment_anything import sam_model_registry
+
+# Available model types: "vit_h", "vit_l", "vit_b"
+model_type = "vit_h"
+checkpoint_path = "sam_vit_h_4b8939.pth"
+
+# Download the checkpoint from the official GitHub:
+# https://github.com/facebookresearch/segment-anything#model-checkpoints
+
+sam = sam_model_registry[model_type](checkpoint=checkpoint_path)
+
+```
+#### Step 2. Pixel-level Similarity Calcuation
+```python
+# Load a single-channel TIFF image and convert it to 3-channel RGB
+img = tiff[i, :, :]
+img_rgb = np.stack([img] * 3, axis=0)  # Shape: (3, H, W)
+image = np.transpose(img_rgb, (1, 2, 0))  # Shape: (H, W, 3)
+
+# Initialize SAM predictor and extract features
+predictor = SamPredictor(sam)
+predictor.set_image(image)
+embedding = predictor.features
+embedding = embedding.detach().cpu().numpy().squeeze()  # Shape: (C, H, W)
+
+# Compute pixel affinities from embeddings
+affs = embeddings_to_affinities(embedding, delta_v=0.5, delta_d=1.5)
+affs = np.minimum(affs[0], affs[1])  # Take element-wise min of first two channels
+
+# Resize affinity map to desired shape
+affs_resized = nearest_neighbor_resize(affs, (512, 512))
+
+# Convert affinity map to uint8 format for saving or visualization
+affs_uint8 = np.uint8(255 * affs_resized)
+```
 ### Dual-branch masked image modeling
 
 ## 📉 Downstream Fine-tuning
