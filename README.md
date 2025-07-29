@@ -148,8 +148,8 @@ self.network.vit.load_state_dict(vit_state_dict, strict=False)
 | Spark-based OrgMIM (Base)  | orgmim_spark_b_learner.ckpt   | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
 | MAE-based OrgMIM (Large)   | orgmim_mae_l_learner.ckpt     | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
 | Spark-based OrgMIM (Large) | orgmim_spark_l_learner.ckpt   | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
-| MAE-based OrgMIM (Tiny)    | orgmim_mae_t_learner.ckpt     | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
-| Spark-based OrgMIM (Tiny)  | orgmim_spark_t_learner.ckpt   | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
+| MAE-based OrgMIM (Small)    | orgmim_mae_t_learner.ckpt     | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
+| Spark-based OrgMIM (Small)  | orgmim_spark_t_learner.ckpt   | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
 
 ## 🙏 Acknowledgements
 
