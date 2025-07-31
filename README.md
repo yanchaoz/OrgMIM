@@ -81,7 +81,7 @@ torchrun --nproc_per_node=4 dual_branch_mim_dp.py --config configs/orgmim.yaml
 ```
 
 ## 📉 Downstream Fine-tuning
-All downstream fine-tuning experiments were conducted within the nnU-Net framework. Notably, the input data were normalized by dividing pixel intensities by 255.0.
+All downstream fine-tuning experiments were conducted within the nnU-Net framework. Notably, the input data were normalized by dividing pixel intensities by **255.0**.
 
 ### Pretrianed weights transfer on STU-Net (CNN-based)
 ```python
