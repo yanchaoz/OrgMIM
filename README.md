@@ -27,7 +27,7 @@ pip install git+https://github.com/facebookresearch/segment-anything.git
 ```
 Then, load the SAM model and weights in Python:
 ```python
-from segment_anything import sam_model_registry
+from segment_anything import sam_model_registry, SamPredictor
 
 # Available model types: "vit_h", "vit_l", "vit_b"
 model_type = "vit_h"
