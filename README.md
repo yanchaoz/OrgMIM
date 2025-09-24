@@ -18,7 +18,7 @@ The complete Conda environment has been packaged for direct use. You can downloa
 
 ## 🔬 Pretraining with OrgMIM
 
-### Generation of membrane maps
+### Generation of membrane attention maps
 #### Step 1. Loading a Visual Foundation Model
 First, install the [Segment Anything](https://github.com/facebookresearch/segment-anything) package:
 
