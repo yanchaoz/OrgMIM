@@ -10,7 +10,7 @@ Meanwhile, we are actively curating and integrating organelle datasets from othe
 
 ## 📊 Downstream Segmentation Datasets
 
-We conduct extensive experiments on four representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
+We conduct extensive experiments on six representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
 
 ## ⚙️ Environments
 
