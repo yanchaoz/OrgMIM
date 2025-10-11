@@ -55,6 +55,7 @@ embedding = embedding.detach().cpu().numpy().squeeze()  # Shape: (C, H, W)
 # Compute pixel affinities from embeddings
 affs = embeddings_to_affinities(embedding, delta_v=0.5, delta_d=1.5)
 affs = np.minimum(affs[0], affs[1])  # Take element-wise min of first two channels
+affs = affs[1:, 1:]
 
 # Resize affinity map to desired shape
 affs_resized = nearest_neighbor_resize(affs, (512, 512))
