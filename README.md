@@ -16,7 +16,7 @@ We conduct extensive experiments on six representative datasets with varying vox
 
 The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
 
-## 🔬 Pretraining with OrgMIM
+## 🔬 Pretraining via OrgMIM
 
 ### Generation of membrane attention maps
 #### Step 1. Loading a Visual Foundation Model
@@ -81,7 +81,7 @@ To run it in distributed mode (e.g., on 4 GPUs):
 torchrun --nproc_per_node=4 dual_branch_mim_dp.py --config configs/orgmim.yaml
 ```
 
-## 📉 Downstream Fine-tuning
+## 📉 Downstream Finetuning
 All downstream fine-tuning experiments were conducted within the nnU-Net framework. Notably, the input data were normalized by dividing pixel intensities by **255.0**.
 
 ### Pretrianed weights transfer on STU-Net (CNN-based)
