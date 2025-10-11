@@ -139,9 +139,7 @@ self.network.vit.load_state_dict(vit_state_dict, strict=False)
 ```
 ## 🎨 Visual Results
 
-### Mask reconstruction by directly loading the MIM learner
-
-### PCA visualization of dense embeddings from the vision foundation models
+### Mask reconstruction by directly loading the pretrained MIM learner
 
 ## 💾 Released Weights
 
