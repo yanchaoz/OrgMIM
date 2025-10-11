@@ -155,3 +155,10 @@ self.network.vit.load_state_dict(vit_state_dict, strict=False)
 ## 🙏 Acknowledgements
 
 We thank all contributors and open-source dataset providers for their support in this project.
+ <!--- OpenOrganelle
+ - CellMap Challenge
+ - Lucchi++
+ - ASEM
+ - MitoEM
+ - BetaSeg
+ -->
