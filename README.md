@@ -76,10 +76,6 @@ After downloading the dataset, simply run the following script to start training
 ```bash
 python dual_branch_mim.py --config configs/orgmim.yaml
 ```
-To run it in distributed mode (e.g., on 4 GPUs):
-```bash
-torchrun --nproc_per_node=4 dual_branch_mim_dp.py --config configs/orgmim.yaml
-```
 
 ## 📉 Downstream Finetuning
 All downstream fine-tuning experiments were conducted within the nnU-Net framework. Notably, the input data were normalized by dividing pixel intensities by **255.0**.
