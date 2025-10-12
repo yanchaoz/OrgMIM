@@ -74,7 +74,7 @@ affs_uint8 = np.uint8(255 * affs_resized)
 After downloading the dataset, simply run the following script to start training OrgMIM:
 
 ```bash
-python dual_branch_mim.py --config configs/orgmim.yaml
+python pretrain_orgmim.py --config configs/orgmim.yaml
 ```
 
 ## 📉 Downstream Finetuning
