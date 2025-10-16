@@ -2,7 +2,7 @@
 
 Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(under review)*
 
-## 🗂️ Pretraining Database: IsoOrg-1K
+## 1. Pretraining Database: IsoOrg-1K
 
 We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is shown below. The full dataset can be accessed [here](https://drive.google.com/drive/folders/1kpNuod0JltyEoXGpRLo2OMGLhSWdNiHK?usp=sharing), and the precomputed membrane maps are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
 Meanwhile, we are actively curating and integrating organelle datasets from other platforms, and will continue to update this repository to support larger-scale pretraining in the future.
