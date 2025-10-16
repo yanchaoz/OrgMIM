@@ -8,15 +8,15 @@ We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from 
 Meanwhile, we are actively curating and integrating organelle datasets from other platforms, and will continue to update this repository to support larger-scale pretraining in the future.
 <!-- ![Dataset Details](./Figures/Details.jpg) -->
 
-## 📊 Downstream Segmentation Datasets
+## 2. Downstream Segmentation Datasets
 
 We conduct extensive experiments on six representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
 
-## ⚙️ Environments
+## 3. Environments
 
 The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
 
-## 🔬 Pretraining via OrgMIM
+## 4. Pretraining via OrgMIM
 
 ### Generation of membrane attention maps
 #### Step 1. Loading a Visual Foundation Model
@@ -77,7 +77,7 @@ After downloading the dataset, simply run the following script to start training
 python pretrain_orgmim.py --config configs/orgmim.yaml
 ```
 
-## 📉 Downstream Finetuning
+## 5. Downstream Finetuning
 <!---All downstream fine-tuning experiments were conducted within the nnU-Net framework. -->
 Process downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**.
 
@@ -134,7 +134,7 @@ saved_model = torch.load('/***/***/orgmim_mae_b_learner.ckpt')
 vit_state_dict = checkpoint['model_weights']
 self.network.vit.load_state_dict(vit_state_dict, strict=False)
 ```
-## 🎨 Visual Results
+## 6. Visualization
 
 ### Mask reconstruction by directly loading the pretrained MIM learner
 ```python
@@ -186,7 +186,7 @@ reconstruct_and_visualize(
 |-----------------------------|----------------------|--------------------------------------------------|
 | `reconstruct_and_visualize`   | `/orgmim_mae/visualize.py`     | Load pretrained weights and reconstruct the masked input |
 
-## 💾 Released Weights
+## 7. Released Weights
 
 | Methods                   | Models                        | Download                                                      |
 |----------------------------|-------------------------------|---------------------------------------------------------------|
