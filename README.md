@@ -140,7 +140,7 @@ self.network.vit.load_state_dict(vit_state_dict, strict=False)
 
 | Function / Class             | Defined In           | Description                                      |
 |-----------------------------|----------------------|--------------------------------------------------|
-| `reconstruct_and_visualize`   | `/orgmim_mae/visualize.py`     | Resizes 2D arrays using nearest neighbor interpolation |
+| `reconstruct_and_visualize`   | `/orgmim_mae/visualize.py`     | Load pretrained weights and reconstruct the masked input |
 
 ## 💾 Released Weights
 
