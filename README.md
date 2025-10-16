@@ -197,9 +197,7 @@ reconstruct_and_visualize(
 | MAE-based OrgMIM (Small)    | orgmim_mae_s_learner.ckpt     | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
 | Spark-based OrgMIM (Small)  | orgmim_spark_s_learner.ckpt   | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM)       |
 
-## 🙏 Acknowledgements
-
-## 🙏 Acknowledgements
+## 7. Acknowledgements
 
 We sincerely thank all contributors and the providers of open-source datasets that supported this project, including:
 
