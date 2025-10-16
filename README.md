@@ -138,47 +138,48 @@ self.network.vit.load_state_dict(vit_state_dict, strict=False)
 
 ### Mask reconstruction by directly loading the pretrained MIM learner
 ```python
-    model = ViT(
-        image_size=128,
-        frames=128, 
-        image_patch_size=16,  
-        frame_patch_size=16, 
-        channels=1,
-        dim=768,
-        depth=12,
-        heads=12,
-        mlp_dim=3072,
-        dropout=0.1,
-        emb_dropout=0.1
-    )
+model = ViT(
+    image_size=128,
+    frames=128, 
+    image_patch_size=16,  
+    frame_patch_size=16, 
+    channels=1,
+    dim=768,
+    depth=12,
+    heads=12,
+    mlp_dim=3072,
+    dropout=0.1,
+    emb_dropout=0.1
+)
 
-    learner = MAE(
-        encoder=model,
-        masking_ratio=0.75,
-        decoder_dim=512,
-        decoder_depth=6,
-    )
-    ckpt_path_list = ['/***/***/orgmim_mae_b_learner.ckpt']
-    img_path = '/opt/data/.../input/image.tif'
-    att_path = '/opt/data/.../input/mam.tif'
-    save_dir = '/opt/data/.../output'
-    name_list = ['dual']
+learner = MAE(
+    encoder=model,
+    masking_ratio=0.75,
+    decoder_dim=512,
+    decoder_depth=6,
+)
 
-    reconstruct_and_visualize(
-        learner=learner,
-        ckpt_paths=ckpt_path_list,
-        img=img,
-        att=mam,
-        device=device,
-        save_dir=save_dir,
-        name_list=name_list,
-        mask_ratio=0.75,
-        step=200000,
-        total_step=400000,
-        patch_size=16,
-        image_size=128,
-        alpha_t=1
-    )
+ckpt_path_list = ['/***/***/orgmim_mae_b_learner.ckpt']
+img_path = '/opt/data/.../input/image.tif'
+att_path = '/opt/data/.../input/mam.tif'
+save_dir = '/opt/data/.../output'
+name_list = ['dual']
+
+reconstruct_and_visualize(
+    learner=learner,
+    ckpt_paths=ckpt_path_list,
+    img=img,
+    att=mam,
+    device=device,
+    save_dir=save_dir,
+    name_list=name_list,
+    mask_ratio=0.75,
+    step=200000,
+    total_step=400000,
+    patch_size=16,
+    image_size=128,
+    alpha_t=1
+)
 ```
     
 | Function / Class             | Defined In           | Description                                      |
