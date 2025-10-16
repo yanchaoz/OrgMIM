@@ -4,7 +4,7 @@ Datasets, codes, and pretrained weights for **“Masked Image Modeling for Gener
 
 ## 🗂️ Pretraining Database: IsoOrg-1K
 
-We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is shown below. The full dataset can be accessed [here](https://drive.google.com/drive/folders/1kpNuod0JltyEoXGpRLo2OMGLhSWdNiHK?usp=sharing), and the precomputed membrane maps are  available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
+We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is shown below. The full dataset can be accessed [here](https://drive.google.com/drive/folders/1kpNuod0JltyEoXGpRLo2OMGLhSWdNiHK?usp=sharing), and the precomputed membrane maps are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
 Meanwhile, we are actively curating and integrating organelle datasets from other platforms, and will continue to update this repository to support larger-scale pretraining in the future.
 <!-- ![Dataset Details](./Figures/Details.jpg) -->
 
@@ -78,7 +78,7 @@ python pretrain_orgmim.py --config configs/orgmim.yaml
 ```
 
 ## 📉 Downstream Finetuning
-All downstream fine-tuning experiments were conducted within the nnU-Net framework. Notably, the input data were normalized by dividing pixel intensities by **255.0**.
+All downstream fine-tuning experiments were conducted within the nnU-Net framework. Process datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data were normalized by dividing pixel intensities by **255.0**.
 
 ### Pretrianed weights transfer on STU-Net (CNN-based)
 ```python
