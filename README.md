@@ -79,7 +79,7 @@ python pretrain_orgmim.py --config configs/orgmim.yaml
 
 ## 📉 Downstream Finetuning
 <!---All downstream fine-tuning experiments were conducted within the nnU-Net framework. -->
-Process downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data were normalized by dividing pixel intensities by **255.0**.
+Process downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**.
 
 ### Pretrianed weights transfer on STU-Net (CNN-based)
 ```python
