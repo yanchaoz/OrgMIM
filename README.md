@@ -199,12 +199,15 @@ reconstruct_and_visualize(
 
 ## 🙏 Acknowledgements
 
+## 🙏 Acknowledgements
+
 We sincerely thank all contributors and the providers of open-source datasets that supported this project, including:
 
-- OpenOrganelle  
-- CellMap Challenge  
-- Lucchi++  
-- ASEM  
-- MitoEM  
-- BetaSeg
+- [OpenOrganelle](https://openorganelle.janelia.org/)  
+- [CellMap Challenge](https://cellmapchallenge.janelia.org/)  
+- [Lucchi++](https://sites.google.com/view/connectomics/)  
+- [ASEM](https://github.com/kirchhausenlab/incasem)  
+- [MitoEM](https://mitoem.grand-challenge.org/)  
+- [BetaSeg](https://cloud.mpi-cbg.de/index.php/s/UJopHTRuh6f4wR8)
+
 
