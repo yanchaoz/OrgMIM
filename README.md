@@ -66,8 +66,8 @@ affs_uint8 = np.uint8(255 * affs_resized)
 
 | Function / Class             | Defined In           | Description                                      |
 |-----------------------------|----------------------|--------------------------------------------------|
-| `embeddings_to_affinities`  | `mam_utils.py`  | Converts pixel embeddings into affinity maps     |
-| `nearest_neighbor_resize`   | `mam_utils.py`     | Resizes 2D arrays using nearest neighbor interpolation |
+| `embeddings_to_affinities`  | `preparation/mam_utils.py`  | Converts pixel embeddings into affinity maps     |
+| `nearest_neighbor_resize`   | `preparation/mam_utils.py`     | Resizes 2D arrays using nearest neighbor interpolation |
 
 ### Dual-branch masked image modeling
 
@@ -137,6 +137,10 @@ self.network.vit.load_state_dict(vit_state_dict, strict=False)
 ## 🎨 Visual Results
 
 ### Mask reconstruction by directly loading the pretrained MIM learner
+
+| Function / Class             | Defined In           | Description                                      |
+|-----------------------------|----------------------|--------------------------------------------------|
+| `reconstruct_and_visualize`   | `/orgmim_mae/visualize.py`     | Resizes 2D arrays using nearest neighbor interpolation |
 
 ## 💾 Released Weights
 
