@@ -199,11 +199,12 @@ reconstruct_and_visualize(
 
 ## 🙏 Acknowledgements
 
-We thank all contributors and open-source dataset providers for their support in this project.
- <!--- OpenOrganelle
- - CellMap Challenge
- - Lucchi++
- - ASEM
- - MitoEM
- - BetaSeg
- -->
+We sincerely thank all contributors and the providers of open-source datasets that supported this project, including:
+
+- OpenOrganelle  
+- CellMap Challenge  
+- Lucchi++  
+- ASEM  
+- MitoEM  
+- BetaSeg
+
