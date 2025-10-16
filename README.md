@@ -139,12 +139,11 @@ self.network.vit.load_state_dict(vit_state_dict, strict=False)
 ### Mask reconstruction by directly loading the pretrained MIM learner
 ```python
     model = ViT(
-        image_size=128,  # input image size
-        frames=128,  # number of frames
-        image_patch_size=16,  # image patch size
-        frame_patch_size=16,  # frame patch size
+        image_size=128,
+        frames=128, 
+        image_patch_size=16,  
+        frame_patch_size=16, 
         channels=1,
-        num_classes=1000,
         dim=768,
         depth=12,
         heads=12,
@@ -159,11 +158,12 @@ self.network.vit.load_state_dict(vit_state_dict, strict=False)
         decoder_dim=512,
         decoder_depth=6,
     )
-     ckpt_path_list = ['/***/***/orgmim_mae_b_learner.ckpt']
+    ckpt_path_list = ['/***/***/orgmim_mae_b_learner.ckpt']
     img_path = '/opt/data/.../input/image.tif'
     att_path = '/opt/data/.../input/mam.tif'
     save_dir = '/opt/data/.../output'
     name_list = ['dual']
+
     reconstruct_and_visualize(
         learner=learner,
         ckpt_paths=ckpt_path_list,
