@@ -135,7 +135,7 @@ vit_state_dict = checkpoint['model_weights']
 self.network.vit.load_state_dict(vit_state_dict, strict=False)
 ```
 ## 6. Visualization
-
+![Dataset Details](./Figures/mask-reconstruction.png)
 ### Mask reconstruction by directly loading the pretrained MIM learner
 ```python
 model = ViT(
