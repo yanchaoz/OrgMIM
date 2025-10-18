@@ -18,7 +18,7 @@ The complete Conda environment has been packaged for direct use. You can downloa
 
 ## 4. Pretraining via OrgMIM
 
-### Generation of membrane attention maps
+### 4.1 Generation of membrane attention maps
 #### Step 1. Loading a Visual Foundation Model
 First, install the [Segment Anything](https://github.com/facebookresearch/segment-anything) package:
 
@@ -69,12 +69,17 @@ affs_uint8 = np.uint8(255 * affs_resized)
 | `embeddings_to_affinities`  | `preparation/mam_utils.py`  | Converts pixel embeddings into affinity maps     |
 | `nearest_neighbor_resize`   | `preparation/mam_utils.py`     | Resizes 2D arrays using nearest neighbor interpolation |
 
-### Dual-branch masked image modeling
+### 4.2 Dual-branch masked image modeling
 
-After downloading the dataset, simply run the following script to start training OrgMIM:
+After downloading the dataset, simply run the following script to start training MAE/SparK-based OrgMIM:
 
 ```bash
-python pretrain_orgmim.py --config configs/orgmim.yaml
+cd orgmim_mae 
+python /pretrain_orgmim.py --config configs/orgmim.yaml
+```
+```bash
+cd orgmim_spark
+python /pretrain_orgmim.py --config configs/orgmim.yaml
 ```
 
 ## 5. Downstream Finetuning
