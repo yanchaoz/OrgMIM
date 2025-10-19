@@ -4,13 +4,13 @@ Datasets, codes, and pretrained weights for **“Masked Image Modeling for Gener
 
 ## 1. Pretraining Database: IsoOrg-1K
 
-We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is shown below. The full dataset (and the metadata) can be accessed [here](https://drive.google.com/drive/folders/13ybWYaCtwuRcRfhyEZ-_mY8fVUBFgGKS?usp=sharing), and the precomputed membrane maps are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
+We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is shown below. The full dataset (and the metadata) can be accessed [here](https://drive.google.com/drive/folders/13ybWYaCtwuRcRfhyEZ-_mY8fVUBFgGKS?usp=sharing), and the precomputed membrane maps are available [here](https://huggingface.co/datasets/yanchaoz/OrgMIM-datasets/tree/main).
 Meanwhile, we are actively curating and integrating organelle datasets, and will continue to update this repository to support larger-scale pretraining in the future.
 ![Dataset Details](./Figures/metadata.png)
 
 ## 2. Downstream Segmentation Datasets
 
-We conduct extensive experiments on six representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K).
+We conduct extensive experiments on six representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/OrgMIM-datasets/tree/main).
 
 ## 3. Environments
 
