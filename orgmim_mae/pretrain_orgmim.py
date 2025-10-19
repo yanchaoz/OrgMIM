@@ -3,7 +3,6 @@ from __future__ import print_function
 from __future__ import division
 
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = "3"
 import sys
 import yaml
 import time
