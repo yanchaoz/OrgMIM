@@ -8,6 +8,8 @@ We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from 
 Meanwhile, we are actively curating and integrating organelle datasets, and will continue to update this repository to support larger-scale pretraining in the future.
 ![Dataset Details](./Figures/metadata.png)
 
+
+
 ## 2. Downstream Segmentation Datasets
 
 We conduct extensive experiments on six representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/OrgMIM-datasets/tree/main).
@@ -212,5 +214,10 @@ We sincerely thank all contributors and the providers of open-source datasets th
 - [ASEM](https://github.com/kirchhausenlab/incasem)  
 - [MitoEM](https://mitoem.grand-challenge.org/)  
 - [BetaSeg](https://cloud.mpi-cbg.de/index.php/s/UJopHTRuh6f4wR8)
+
+## Contact Us
+
+If you have any questions or suggestions, feel free to contact us via email or by opening a pull request.
+
 
 
