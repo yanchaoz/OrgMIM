@@ -77,11 +77,11 @@ After downloading the dataset, simply run the following script to start training
 
 ```bash
 cd orgmim_mae 
-python /pretrain_orgmim.py --config configs/orgmim.yaml
+python pretrain_orgmim.py --config configs/orgmim.yaml
 ```
 ```bash
 cd orgmim_spark
-python /pretrain_orgmim.py --config configs/orgmim.yaml
+python pretrain_orgmim.py --config configs/orgmim.yaml
 ```
 
 ## 5. Downstream Finetuning
