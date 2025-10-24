@@ -86,9 +86,9 @@ python pretrain_orgmim.py --config configs/orgmim.yaml
 
 ## 5. Downstream Finetuning
 <!---All downstream fine-tuning experiments were conducted within the nnU-Net framework. -->
-Process downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**.
+Processed downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**.
 
-### Pretrianed weights transfer on STU-Net (CNN-based)
+### Pretrained weights transfer on STU-Net (CNN-based)
 ```python
 import torch
 from collections import OrderedDict
