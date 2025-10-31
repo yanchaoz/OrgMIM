@@ -16,7 +16,7 @@ We conduct extensive experiments on six representative datasets with varying vox
 
 ## 3. Environments
 
-The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/yanchaoz/OrgMIM).
+The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/yanchaoz/OrgMIM-models/tree/main).
 
 ## 4. Pretraining via OrgMIM
 
