@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite this repository:"
+authors:
+  - family-names: Zhang
+    given-names: Yanchao
+  - family-names: Zhai
+    given-names: Hao
+  - family-names: Guo
+    given-names: Jinyue
+  - family-names: Li
+    given-names: Zhenchen
+  - family-names: Liu
+    given-names: Jing
+  - family-names: Han
+    given-names: Hua
+title: "Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM"
+version: "1.0"
+repository-code: "https://github.com/yanchaoz/OrgMIM"
