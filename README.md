@@ -19,8 +19,9 @@ We conduct extensive experiments on six representative datasets with varying vox
 The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/yanchaoz/OrgMIM-models/tree/main).
 
 ## 4. Pretraining via OrgMIM
-
 ### 4.1 Generation of membrane attention maps
+The formalized description can be seen in 'preparation/MAM_details.png'.
+
 #### Step 1. Loading a Visual Foundation Model
 First, install the [Segment Anything](https://github.com/facebookresearch/segment-anything) package:
 
