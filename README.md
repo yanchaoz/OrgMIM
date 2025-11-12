@@ -218,7 +218,7 @@ We sincerely thank all contributors and the providers of open-source datasets th
 
 ## Contact Us
 
-If you have any questions or suggestions, feel free to contact us via email or by opening a pull request.
+If you have any questions or suggestions, feel free to contact us via email or by opening an issue.
 
 
 
