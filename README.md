@@ -42,7 +42,7 @@ checkpoint_path = "sam_vit_h_4b8939.pth"
 sam = sam_model_registry[model_type](checkpoint=checkpoint_path)
 
 ```
-#### Step 2. Pixel-level Similarity Calcuation
+#### Step 2. Embedding-level Similarity Calcuation
 ```python
 # Load a single-channel TIFF image and convert it to 3-channel RGB
 img = tiff[i, :, :]
