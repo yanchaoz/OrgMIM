@@ -22,7 +22,7 @@ The complete Conda environment has been packaged for direct use. You can downloa
 ### 4.1 Generation of membrane attention maps
 The formalized description can be seen in 'preparation/MAM_details.png'.
 
-#### Step 1. Loading a Visual Foundation Model
+#### Step 1. Loading a visual foundation model
 First, install the [Segment Anything](https://github.com/facebookresearch/segment-anything) package:
 
 ```bash
@@ -42,7 +42,8 @@ checkpoint_path = "sam_vit_h_4b8939.pth"
 sam = sam_model_registry[model_type](checkpoint=checkpoint_path)
 
 ```
-#### Step 2. Embedding-level Similarity Calcuation
+In addition to SAM, models from the DINO family can also provide relevant priors. However, according to our qualitative experiments (see Figures/pca.png), their performance on EM data is not yet on par with that of SAM.
+#### Step 2. Embedding-level membrane attention map (MAM)
 ```python
 # Load a single-channel TIFF image and convert it to 3-channel RGB
 img = tiff[i, :, :]
@@ -72,7 +73,7 @@ mam_uint8 = np.uint8(255 * mam_resize)
 | `embeddings_to_affinities`  | `preparation/mam_utils.py`  | Converts pixel embeddings into affinity maps     |
 | `nearest_neighbor_resize`   | `preparation/mam_utils.py`     | Resizes 2D arrays using nearest neighbor interpolation |
 
-### 4.2 Dual-branch masked image modeling
+### 4.2 Dual-branch masked image modeling (OrgMIM)
 
 After downloading the dataset, simply run the following script to start training MAE/SparK-based OrgMIM:
 
