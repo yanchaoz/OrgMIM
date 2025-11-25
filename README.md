@@ -43,7 +43,7 @@ sam = sam_model_registry[model_type](checkpoint=checkpoint_path)
 
 ```
 In addition to SAM, models from the DINO family can also provide relevant priors. However, according to our qualitative experiments (see Figures/pca.png), their performance on EM data is not yet on par with that of SAM.
-#### Step 2. Construction of the embedding-level membrane attention map (MAM)
+#### Step 2. Embedding-level similarity measurement
 ```python
 # Load a single-channel TIFF image and convert it to 3-channel RGB
 img = tiff[i, :, :]
