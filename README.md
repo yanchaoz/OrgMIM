@@ -22,7 +22,7 @@ The complete Conda environment has been packaged for direct use. You can downloa
 ### 4.1 Generation of membrane attention maps
 The formalized description can be seen in 'preparation/MAM_details.png'.
 
-#### Step 1. Loading a visual foundation model
+#### Step 1. Loading a visual foundation model (SAM as an example)
 First, install the [Segment Anything](https://github.com/facebookresearch/segment-anything) package:
 
 ```bash
@@ -43,7 +43,7 @@ sam = sam_model_registry[model_type](checkpoint=checkpoint_path)
 
 ```
 In addition to SAM, models from the DINO family can also provide relevant priors. However, according to our qualitative experiments (see Figures/pca.png), their performance on EM data is not yet on par with that of SAM.
-#### Step 2. Embedding-level membrane attention map (MAM)
+#### Step 2. Construction of the embedding-level membrane attention map (MAM)
 ```python
 # Load a single-channel TIFF image and convert it to 3-channel RGB
 img = tiff[i, :, :]
