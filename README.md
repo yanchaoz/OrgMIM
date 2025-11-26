@@ -85,7 +85,7 @@ python pretrain_orgmim.py --config configs/orgmim.yaml
 cd orgmim_spark
 python pretrain_orgmim.py --config configs/orgmim.yaml
 ```
-
+Note that You need to modify the configuration file (orgmim.yaml) according to the location of your data storage.
 ## 5. Downstream Finetuning
 <!---All downstream fine-tuning experiments were conducted within the nnU-Net framework. -->
 Processed downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**.
