@@ -37,7 +37,8 @@ TRAIN:
 
 
 DATA:
-  data_folder: '/opt/data/3_33/SCN/zhangyc/SegOrganelle/Data/organelle_hist_match_500/hela'
-  mam_folder: '/opt/data/3_33/SCN/zhangyc/SegOrganelle/Data/organelle_hist_match_500_sam/hela'
+  data_folder: '***/***'
+  mam_folder: '***/***'
  
+
 
