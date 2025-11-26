@@ -3,8 +3,8 @@ NAME: 'orgmim'
 MODEL:
   pre_train: False
   continue_train: False
-  pretrain_path: None
-  continue_path: None
+  pretrain_path: 
+  continue_path: 
   pool_op_kernel_sizes: [[2, 2, 2], [2, 2, 2], [2, 2, 2], [2, 2, 2], [1, 1, 1]]
   conv_kernel_sizes: [[3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3], [3, 3, 3]]
   depth: [1, 1, 1, 1, 1, 1]
@@ -38,6 +38,7 @@ TRAIN:
 DATA:
   data_folder: '***/***'
   mam_folder: '***/***'
+
 
 
 
