@@ -16,6 +16,7 @@ MODEL:
 TRAIN:
   cache_path: './caches/'
   save_path: './models/'
+  group_path: './group_file.json'
   display_freq: 100
   total_iters: 400000
   warmup_iters: 0
@@ -37,6 +38,7 @@ TRAIN:
 DATA:
   data_folder: '***/***'
   mam_folder: '***/***'
+
 
 
 
