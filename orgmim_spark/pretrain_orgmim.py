@@ -176,7 +176,7 @@ def loop(cfg, train_provider, iters, writer):
         non_active2 = mask2.logical_not().int().view(mask2.shape[0], -1)
         inpp2, recc2 = learner(inp, active_b1ff=mask2, vis=False)
         loss1, _ = learner.forward_loss(inpp2, recc2, mask2)
-        ######### Semantic Branch #########
+        ######### Membrane Branch #########
         mask3 = learner.generate_mask_mam(att, step=iters, total_step=cfg.TRAIN.total_iters, alpha_t=cfg.TRAIN.alpha_t)
         inpp3, recc3 = learner(inp, active_b1ff=mask3, vis=False)
         non_active3 = mask3.logical_not().int().view(mask3.shape[0], -1)
@@ -187,7 +187,7 @@ def loop(cfg, train_provider, iters, writer):
         l2_c2 = ((recc3 - recc2.detach()) ** 2).mean(dim=2, keepdim=False)
         l2_c2 = l2_c2.mul_(non_active2 * non_active3).sum() / ((non_active2 * non_active3).sum() + 1e-8) 
         loss3 = 0.5 * l2_c1 + 0.5 * l2_c2
-        ######### Loss Cat. #########
+        ######### Total Loss #########
         loss = loss1 + loss2 + loss3
         loss.backward()
         torch.nn.utils.clip_grad_norm_(learner.parameters(), 12).item()
