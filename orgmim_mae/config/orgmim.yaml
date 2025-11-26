@@ -2,9 +2,9 @@ NAME: 'orgmim'
 
 MODEL:
   pre_train: False
-  continue_train: True
+  continue_train: False
   pretrain_path: 
-  continue_path: '/opt/data/3_33/SCN/zhangyc/SegOrganelle/Code/Dual_Stream_MAE/models/Dual_MAE'
+  continue_path: 
   dim: 768
   depth: 12
   head: 12
@@ -16,7 +16,7 @@ MODEL:
 TRAIN:
   cache_path: './caches/'
   save_path: './models/'
-  group_path: '/opt/data/3_33/SCN/zhangyc/SegOrganelle/Code/pretrain_github/ViT/group_file.json'
+  group_path: './group_file.json'
   loss_forward: 3
   mask_ratio: 0.75
   alpha_t: 0.75
@@ -40,5 +40,6 @@ DATA:
   data_folder: '***/***'
   mam_folder: '***/***'
  
+
 
 
