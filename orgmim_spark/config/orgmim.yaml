@@ -35,7 +35,8 @@ TRAIN:
   mask_ratio: 0.75
 
 DATA:
-  data_folder: '/data1/share/SCN/zhangyc/SegOrganelle/Data/organelle_hist_match_500/hela'
-  mam_folder: '/data1/share/SCN/zhangyc/SegOrganelle/Data/organelle_hist_match_500_sam/hela'
+  data_folder: '***/***'
+  mam_folder: '***/***'
+
 
 
