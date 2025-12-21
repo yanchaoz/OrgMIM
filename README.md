@@ -194,7 +194,7 @@ reconstruct_and_visualize(
 |-----------------------------|----------------------|--------------------------------------------------|
 | `reconstruct_and_visualize`   | `/orgmim_mae/visualize.py`     | Load pretrained weights and reconstruct the masked input |
 
-![Dataset Details](./Figures/mask-reconstruction2.png)
+![Dataset Details](./Figures/mask-reconstruction3.png)
 ## 7. Released Weights
 
 | Methods                   | Models                        | Download                                                      |
