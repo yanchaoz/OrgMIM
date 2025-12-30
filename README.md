@@ -1,7 +1,7 @@
 # OrgMIM
 
 Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(under review)*
-
+![Dataset Details](./Figures/mask-reconstruction2.png)
 ## 1. Pretraining Database: IsoOrg-1K
 
 We introduce **IsoOrg-1K**, a diverse organelle-specific dataset collected from [OpenOrganelle](https://openorganelle.janelia.org/). Detailed information is shown below. The full dataset (and the metadata) can be accessed [here](https://drive.google.com/drive/folders/13ybWYaCtwuRcRfhyEZ-_mY8fVUBFgGKS?usp=sharing), and the precomputed membrane maps are available [here](https://huggingface.co/datasets/yanchaoz/OrgMIM-datasets/tree/main).
@@ -194,7 +194,7 @@ reconstruct_and_visualize(
 |-----------------------------|----------------------|--------------------------------------------------|
 | `reconstruct_and_visualize`   | `/orgmim_mae/visualize.py`     | Load pretrained weights and reconstruct the masked input |
 
-![Dataset Details](./Figures/mask-reconstruction2.png)
+
 ## 7. Released Weights
 
 | Methods                   | Models                        | Download                                                      |
