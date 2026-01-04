@@ -14,21 +14,10 @@ Meanwhile, we are actively curating and integrating organelle datasets, and will
 
 We conduct extensive experiments on six representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/OrgMIM-datasets/tree/main).
 
-## 3. Setup and Installation
+## 3. Environments
 
-### 3.1 Environment
+The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/yanchaoz/OrgMIM-models/tree/main).
 
-The complete Conda environment is provided for reproducibility:
-
-👉 https://huggingface.co/yanchaoz/OrgMIM-models
-
-Alternatively, OrgMIM can be installed as a Python package:
-
-```bash
-git clone https://github.com/your-repo/OrgMIM.git
-cd OrgMIM
-pip install -e .
-```
 ## 4. Pretraining via OrgMIM
 ### 4.1 Generation of membrane attention maps
 The formalized description can be seen in 'preparation/MAM_details.png'.
@@ -86,17 +75,20 @@ mam_uint8 = np.uint8(255 * mam_resize)
 
 ### 4.2 Dual-branch masked image modeling (OrgMIM)
 
-After downloading the dataset, simply run the following script to start training MAE/SparK-based OrgMIM:
+After downloading and preparing the pretraining dataset, OrgMIM pretraining can be launched using the following command:
 
 ```bash
-cd orgmim_mae 
-python pretrain_orgmim.py --config configs/orgmim.yaml
+python scripts/pretrain_orgmim.py -c orgmim
 ```
-```bash
-cd orgmim_spark
-python pretrain_orgmim.py --config configs/orgmim.yaml
-```
-Note that you need to modify the configuration file (orgmim.yaml) according to the location of your data storage.
+
+All major experimental settings are specified in a unified configuration file (`scripts/config/orgmim.yaml`), including:
+
+- **Backbone architecture**: ViT or CNN  
+- **Model scale**: small / base / large  
+- **Training hyperparameters**: masking ratio, etc.
+
+Different architectures and model sizes can be selected by modifying the corresponding fields in the configuration file, without changing the training code. 
+
 ## 5. Downstream Finetuning
 <!---All downstream fine-tuning experiments were conducted within the nnU-Net framework. -->
 Processed downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**.
