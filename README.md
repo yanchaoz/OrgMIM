@@ -93,7 +93,8 @@ Processed downstream datasets are available [here](https://huggingface.co/datase
 ```bash
 python scripts/finetune.py -c orgmim
 ```
-We note that this repository does not provide task-specific, end-to-end training pipelines for all downstream segmentation benchmarks. Instead, we focus on releasing pretrained OrgMIM models and a unified finetuning interface that facilitates their transfer to different downstream architectures.
+We note that this repository does not provide task-specific, end-to-end training pipelines. Instead, we focus on releasing pretrained OrgMIM models and providing example code to facilitate the automatic downloading and loading of pretrained weights for different backbone architectures and model scales.
+
 
 ## 6. Visualization
 ### Mask reconstruction by directly loading the pretrained MIM learner
