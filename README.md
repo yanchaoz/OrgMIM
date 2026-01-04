@@ -18,7 +18,7 @@ We conduct extensive experiments on six representative datasets with varying vox
 
 The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/yanchaoz/OrgMIM-models/tree/main).
 
-## 4. Pretraining via OrgMIM
+## 4. Organelle-specific Pretraining via OrgMIM
 ### 4.1 Generation of membrane attention maps
 The formalized description can be seen in 'preparation/MAM_details.png'.
 
@@ -73,7 +73,7 @@ mam_uint8 = np.uint8(255 * mam_resize)
 | `embeddings_to_affinities`  | `preparation/mam_utils.py`  | Converts pixel embeddings into affinity maps     |
 | `nearest_neighbor_resize`   | `preparation/mam_utils.py`     | Resizes 2D arrays using nearest neighbor interpolation |
 
-### 4.2 Dual-branch masked image modeling (OrgMIM)
+### 4.2 Dual-branch masked image modeling
 
 After downloading and preparing the pretraining dataset, OrgMIM pretraining can be launched using the following command:
 
