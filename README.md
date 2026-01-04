@@ -14,10 +14,21 @@ Meanwhile, we are actively curating and integrating organelle datasets, and will
 
 We conduct extensive experiments on six representative datasets with varying voxel resolutions and biological contexts. The processed and partitioned data can be downloaded from [here](https://huggingface.co/datasets/yanchaoz/OrgMIM-datasets/tree/main).
 
-## 3. Environments
+## 3. Setup and Installation
 
-The complete Conda environment has been packaged for direct use. You can download and unzip it from [here](https://huggingface.co/yanchaoz/OrgMIM-models/tree/main).
+### 3.1 Environment
 
+The complete Conda environment is provided for reproducibility:
+
+👉 https://huggingface.co/yanchaoz/OrgMIM-models
+
+Alternatively, OrgMIM can be installed as a Python package:
+
+```bash
+git clone https://github.com/your-repo/OrgMIM.git
+cd OrgMIM
+pip install -e .
+```
 ## 4. Pretraining via OrgMIM
 ### 4.1 Generation of membrane attention maps
 The formalized description can be seen in 'preparation/MAM_details.png'.
