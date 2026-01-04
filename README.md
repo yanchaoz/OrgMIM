@@ -78,7 +78,7 @@ mam_uint8 = np.uint8(255 * mam_resize)
 After downloading and preparing the pretraining dataset, OrgMIM pretraining can be launched using the following command:
 
 ```bash
-python scripts/pretrain_orgmim.py -c orgmim
+python scripts/pretrain.py -c orgmim
 ```
 
 All major experimental settings are specified in a unified configuration file (`scripts/config/orgmim.yaml`), including:
@@ -87,65 +87,14 @@ All major experimental settings are specified in a unified configuration file (`
 - **Model scale**: small / base / large  
 - **Training hyperparameters**: masking ratio, etc.
 
-Different architectures and model sizes can be selected by modifying the corresponding fields in the configuration file, without changing the training code. 
-
 ## 5. Downstream Finetuning
 <!---All downstream fine-tuning experiments were conducted within the nnU-Net framework. -->
-Processed downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**.
-
-### Pretrained weights transfer on STU-Net (CNN-based)
-```python
-import torch
-from collections import OrderedDict
-
-# Initialize network
-self.network = STUNet(
-    self.num_input_channels,
-    self.num_classes,
-    depth=[1, 1, 1, 1, 1, 1],
-    dims=[32, 64, 128, 256, 512, 512],
-    pool_op_kernel_sizes=self.net_num_pool_op_kernel_sizes,
-    conv_kernel_sizes=self.net_conv_kernel_sizes
-)
-
-# Load pretrained model weights
-saved_model = torch.load('/***/***/orgmim_spark_b_learner.ckpt')
-pretrained_dict = saved_model['model_weights']
-
-# Process and load encoder weights into the current model
-new_dict = OrderedDict()
-for old_key, value in pretrained_dict.items():
-    if 'encoder' in old_key:
-        new_key = old_key.split('sp_cnn.')[-1]
-        new_dict[new_key] = value
-
-self.network.load_state_dict(new_dict, strict=False)
+Processed downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**. The current implementation supports automatic downloading and loading of pretrained OrgMIM weights with different backbone architectures and model scales through a unified configuration file.
+```bash
+python scripts/finetune.py -c orgmim
 ```
-### Pretrianed weights transfer on UNETR (ViT-based)
-```python
-# Initialize network
-self.network =  UNETR(
-                in_channels=self.num_input_channels,
-                out_channels=self.num_classes,
-                img_size=(128, 128, 128),
-                patch_size=(16, 16, 16),
-                feature_size=16,
-                hidden_size=768,
-                mlp_dim=3072,
-                num_heads=12,
-                norm_name='instance',
-                conv_block=True,
-                res_block=True,
-                kernel_size=3,
-                skip_connection=False,
-                show_feature=False,
-                dropout_rate=0.0)
+We note that this repository does not provide task-specific, end-to-end training pipelines for all downstream segmentation benchmarks. Instead, we focus on releasing pretrained OrgMIM models and a unified finetuning interface that facilitates their transfer to different downstream architectures.
 
-# Load pretrained model weights
-saved_model = torch.load('/***/***/orgmim_mae_b_learner.ckpt')
-vit_state_dict = checkpoint['model_weights']
-self.network.vit.load_state_dict(vit_state_dict, strict=False)
-```
 ## 6. Visualization
 ### Mask reconstruction by directly loading the pretrained MIM learner
 ```python
@@ -195,7 +144,7 @@ reconstruct_and_visualize(
     
 | Function / Class             | Defined In           | Description                                      |
 |-----------------------------|----------------------|--------------------------------------------------|
-| `reconstruct_and_visualize`   | `/orgmim_mae/visualize.py`     | Load pretrained weights and reconstruct the masked input |
+| `reconstruct_and_visualize`   | `legacy/orgmim_mae/visualize.py`     | Load pretrained weights and reconstruct the masked input |
 
 
 ## 7. Released Weights
