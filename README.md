@@ -88,12 +88,14 @@ All major experimental settings are specified in a unified configuration file (`
 - **Training hyperparameters**: masking ratio, etc.
 
 ## 5. Downstream Finetuning
-<!---All downstream fine-tuning experiments were conducted within the nnU-Net framework. -->
+
 Processed downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**. The current implementation supports automatic downloading and loading of pretrained OrgMIM weights with different backbone architectures and model scales through a unified configuration file.
 ```bash
 python scripts/finetune.py -c orgmim
 ```
-We note that this repository does not provide task-specific, end-to-end training pipelines. Instead, we focus on releasing pretrained OrgMIM models and providing example code to facilitate the automatic downloading and loading of pretrained weights for different backbone architectures and model scales.
+We note that this repository does not provide task-specific training pipelines, but focuses on releasing pretrained weights with example code for network initialization.
+
+
 
 
 ## 6. Visualization
