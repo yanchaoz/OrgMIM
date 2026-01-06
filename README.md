@@ -116,27 +116,6 @@ We note that this repository does not provide task-specific training pipelines, 
 ## 6. Visualization
 ### Mask reconstruction by directly loading the pretrained MIM learner
 ```python
-model = ViT(
-    image_size=128,
-    frames=128, 
-    image_patch_size=16,  
-    frame_patch_size=16, 
-    channels=1,
-    dim=768,
-    depth=12,
-    heads=12,
-    mlp_dim=3072,
-    dropout=0.1,
-    emb_dropout=0.1
-)
-
-learner = MAE(
-    encoder=model,
-    masking_ratio=0.75,
-    decoder_dim=512,
-    decoder_depth=6,
-)
-
 ckpt_path_list = ['/***/***/orgmim_mae_b_learner.ckpt']
 img_path = '/opt/data/.../input/image.tif'
 att_path = '/opt/data/.../input/mam.tif'
