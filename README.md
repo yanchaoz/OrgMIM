@@ -2,7 +2,9 @@
 
 Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(under review)*
 
+## Overview
 ![Dataset Details](./Figures/mask-reconstruction2.png)
+OrgMIM is a masked image modeling framework for organelle-specific representation learning from volumetric EM data. It replaces random masking with complementary strategies based on structural priors and reconstruction feedback. We further introduce IsoOrg-1K, an organelle-centric 3D EM dataset with 928 volumes (>120B voxels) for large-scale pretraining. OrgMIM provides consistent gains for downstream organelle segmentation across multiple public EM benchmarks.
 
 ---
 
