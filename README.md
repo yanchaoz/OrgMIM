@@ -1,6 +1,6 @@
 # OrgMIM
 
-Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(under review)*
+Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(IEEE TMI 2026)*
 
 ## Overview
 ![Dataset Details](./Figures/mask-reconstruction2.png)
