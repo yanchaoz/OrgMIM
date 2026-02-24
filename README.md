@@ -1,4 +1,4 @@
-# OrgMIM  <img src="/Figures/logo.svg" alt="logo" width="50" style="vertical-align: middle;"/>
+# OrgMIM
 
 Datasets, codes, and pretrained weights for **“Masked Image Modeling for Generalizable Organelle Segmentation in Volume EM”** *(IEEE TMI 2026)*
 
