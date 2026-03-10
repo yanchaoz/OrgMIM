@@ -6,7 +6,7 @@ Datasets, codes, and pretrained weights for **“Masked Image Modeling for Gener
 ![GitHub forks](https://img.shields.io/github/forks/yanchaoz/OrgMIM?style=social)
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=yanchaoz.OrgMIM)
 [![HuggingFace](https://img.shields.io/badge/🤗%20Dataset-OrgMIM--datasets-yellow)](https://huggingface.co/datasets/yanchaoz/OrgMIM-datasets)
-[![Google Drive](https://img.shields.io/badge/Google%20Drive-IsoOrg-1K-blue)](https://drive.google.com/drive/folders/13ybWYaCtwuRcRfhyEZ-_mY8fVUBFgGKS?usp=sharing)
+[![Google Drive](https://img.shields.io/badge/Dataset-Google%20Drive-4285F4?logo=google-drive&logoColor=white)](https://drive.google.com/drive/folders/13ybWYaCtwuRcRfhyEZ-_mY8fVUBFgGKS?usp=sharing)
 
 ## Overview
 ![Dataset Details](./Figures/mask-reconstruction2.png)
