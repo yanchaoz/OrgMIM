@@ -62,9 +62,8 @@ class Train(Dataset):
         
         [imgs, atts] = self.simple_aug([imgs, atts])
 
-        imgs = self.intensity_aug(imgs)
-
-        imgs = self.scaler(imgs)
+        # RandomIntensity clips to [0, 1], so normalize the raw crop first.
+        imgs = self.intensity_aug(self.scaler(imgs))
         imgs = imgs[np.newaxis, ...]
         imgs = np.ascontiguousarray(imgs, dtype=np.float32)
 
