@@ -1,0 +1,32 @@
+NAME: orgmim_mednext
+
+MODEL:
+  arch: cnn
+  backbone: mednext
+  scale: base  # small, base, medium, large
+  continue_train: false
+  continue_path:
+  img_size: 128
+  patch_size: 16
+
+TRAIN:
+  cache_path: ./caches/
+  save_path: ./models/
+  group_path:
+  display_freq: 100
+  total_iters: 400000
+  base_lr: 0.0001
+  save_freq: 2000
+  valid_freq: 1000
+  batch_size: 1
+  num_workers: 4
+  if_cuda: true
+  random_seed: 666
+  loss_forward: 3
+  alpha_t: 0.75
+  mask_ratio: 0.75
+  amp: true
+
+DATA:
+  data_folder: /path/to/raw_volumes
+  mam_folder: /path/to/membrane_attention_maps

@@ -40,10 +40,10 @@ class Train(Dataset):
         current_group = self.groups[str(group_idx)]
         sample_name = random.choice(current_group)
 
-        sample_name = os.path.join(self.folder_name, sample_name)
+        sample_path = os.path.join(self.folder_name, sample_name)
         sample_att_path = os.path.join(self.folder_name_mam, sample_name)
         
-        used_data = imageio.volread(sample_name)
+        used_data = imageio.volread(sample_path)
         used_data_att = imageio.volread(sample_att_path)
 
         raw_data_shape = used_data.shape

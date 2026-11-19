@@ -110,6 +110,33 @@ All major experimental settings are specified in a unified configuration file (`
 - **Model scale**: small / base / large  
 - **Training hyperparameters**: masking ratio, etc.
 
+#### MedNeXt-v1 backbone
+
+OrgMIM supports the [MedNeXt-v1](https://github.com/MIC-DKFZ/MedNeXt) 3D encoder
+at four scales: S (`small`), B (`base`), M (`medium`), and L (`large`).
+The encoder uses five resolutions and 3 × 3 × 3 depthwise kernels. Pretraining
+uses the OrgMIM SparK reconstruction decoder, membrane-guided masking, and
+reconstruction-loss-guided masking.
+
+In [`scripts/config/orgmim_mednext.yaml`](scripts/config/orgmim_mednext.yaml),
+set `MODEL.scale`, `DATA.data_folder`, and `DATA.mam_folder`. Each image and its
+membrane attention map should have the same relative path in their respective
+directories. For volumes in subdirectories, set `TRAIN.group_path` to a JSON
+manifest such as `{"0": ["volume_a/crop_001.tif"]}`. The example configuration
+uses 128³ crops, 16³ mask patches, and mixed precision.
+
+Run from the repository root in the OrgMIM environment:
+
+```bash
+pip install -e .
+cd scripts
+python pretrain.py -c orgmim_mednext --gpu 0
+```
+
+The training directory contains `learner.ckpt` and `mednext_encoder.ckpt`.
+The latter contains the EMA encoder parameters for the selected scale.
+The MedNeXt adaptation is distributed under [Apache-2.0](LICENSE-MedNeXt).
+
 ## 5. Downstream Finetuning
 
 Processed downstream datasets are available [here](https://huggingface.co/datasets/yanchaoz/IsoOrg-1K). Notably, the input data are normalized by dividing pixel intensities by **255.0**. The current implementation supports automatic downloading and loading of pretrained OrgMIM weights with different backbone architectures and model scales through a unified configuration file.
@@ -118,7 +145,15 @@ python scripts/finetune.py -c orgmim
 ```
 We note that this repository does not provide task-specific training pipelines, but focuses on releasing pretrained weights with example code for network initialization.
 
+Load a local MedNeXt encoder checkpoint with the scale used during pretraining:
 
+```python
+import torch
+from orgmim.mim_cnn.mednext_encoder import MedNeXtEncoder
+
+encoder = MedNeXtEncoder(scale="base")
+encoder.load_state_dict(torch.load("mednext_encoder.ckpt", map_location="cpu"))
+```
 
 
 ## 6. Visualization
@@ -162,6 +197,7 @@ reconstruct_and_visualize(
 | Spark-based OrgMIM (Large) | orgmim_spark_l_learner.ckpt   | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM-models/tree/main)       |
 | MAE-based OrgMIM (Small)    | orgmim_mae_s_learner.ckpt     | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM-models/tree/main)       |
 | Spark-based OrgMIM (Small)  | orgmim_spark_s_learner.ckpt   | [Hugging Face](https://huggingface.co/yanchaoz/OrgMIM-models/tree/main)       |
+| MedNeXt-based OrgMIM (S, B, M, L) | EMA encoder checkpoints | Pending upload |
 
 ## 8. Acknowledgements
 
