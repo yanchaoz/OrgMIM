@@ -113,7 +113,7 @@ All major experimental settings are specified in a unified configuration file (`
 #### MedNeXt-v1 backbone
 
 OrgMIM supports the [MedNeXt-v1](https://github.com/MIC-DKFZ/MedNeXt) 3D encoder
-at four scales: S (`small`), B (`base`), M (`medium`), and L (`large`).
+at four scales, S (`small`), B (`base`), M (`medium`), and L (`large`).
 The encoder uses five resolutions and 3 × 3 × 3 depthwise kernels. Pretraining
 uses the OrgMIM SparK reconstruction decoder, membrane-guided masking, and
 reconstruction-loss-guided masking.
@@ -125,7 +125,7 @@ directories. For volumes in subdirectories, set `TRAIN.group_path` to a JSON
 manifest such as `{"0": ["volume_a/crop_001.tif"]}`. The example configuration
 uses 128³ crops, 16³ mask patches, and mixed precision.
 
-Run from the repository root in the OrgMIM environment:
+Run these commands from the repository root in the OrgMIM environment.
 
 ```bash
 pip install -e .
@@ -145,7 +145,7 @@ python scripts/finetune.py -c orgmim
 ```
 We note that this repository does not provide task-specific training pipelines, but focuses on releasing pretrained weights with example code for network initialization.
 
-Load a local MedNeXt encoder checkpoint with the scale used during pretraining:
+To load a local MedNeXt checkpoint, instantiate the encoder at the scale used during pretraining.
 
 ```python
 import torch
