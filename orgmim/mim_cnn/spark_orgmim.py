@@ -82,7 +82,7 @@ class SparK(nn.Module):
     def generate_mask_mam(self, att_map: torch.Tensor, step: int = 0, total_step: int = 400000, patch_size: int = 16, alpha_t: float = 0.75) -> torch.Tensor:
         h, w, d= self.fmap_h, self.fmap_w, self.fmap_d
         att_map = F.avg_pool3d(att_map, kernel_size=patch_size, stride=patch_size)
-        att_map = 1 - self.patchify_att(att_map).squeeze()
+        att_map = 1 - self.patchify_att(att_map).squeeze(-1)
         # print(att_map.shape, att_map.dim())
         # if att_map.dim() == 1:
         #     att_map = att_map.unsqueeze(0) 

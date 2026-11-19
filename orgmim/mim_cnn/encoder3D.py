@@ -59,10 +59,13 @@ class SparseGroupNorm(nn.GroupNorm):
             if self.sparse:
                 ii = _get_active_ex_or_ii(H=x.shape[2], W=x.shape[3], D=x.shape[4], returning_active_ex=False)
                 bhwdc = x.permute(0, 2, 3, 4, 1)
-                nc = bhwdc[ii]
-                nc = super(SparseGroupNorm, self).forward(nc)
+                # OrgMIM keeps the same number of active voxels in each sample.
+                # Retain the batch axis so GroupNorm sees a spatial dimension.
+                batch, channels = x.shape[:2]
+                active = bhwdc[ii].reshape(batch, -1, channels).transpose(1, 2)
+                active = super().forward(active).transpose(1, 2)
                 x = torch.zeros_like(bhwdc)
-                x[ii] = nc
+                x[ii] = active.reshape(-1, channels).to(x.dtype)
                 return x.permute(0,4,1,2,3)
             else:
                 return super(SparseGroupNorm, self).forward(x)
@@ -153,7 +156,7 @@ class SparseInstanceNorm(nn.InstanceNorm1d):
                 cn = x[ii[0], :, ii[1],  ii[2],  ii[3]].transpose(0, 1)
                 cn = super(SparseInstanceNorm, self).forward(cn)
                 x = torch.zeros_like(bchwd)
-                x[ii[0], :, ii[1], ii[2], ii[3]] = cn.t()
+                x[ii[0], :, ii[1], ii[2], ii[3]] = cn.t().to(x.dtype)
                 return x
             else:
                 return super(SparseInstanceNorm, self).forward(x)

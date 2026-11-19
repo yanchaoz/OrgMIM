@@ -9,6 +9,7 @@ import logging
 import numpy as np
 from collections import OrderedDict
 import torch
+from torch.cuda.amp import GradScaler, autocast
 from ..utils.visual2d_cnn import visual_2d
 from timm.utils import ModelEma
 from ..mim_cnn.encoder3D import SparseEncoder
@@ -29,14 +30,16 @@ def tuple_to_list(obj):
     else:
         return obj
 
-def loop(cfg, train_provider, iters, writer):
-    f_loss_txt = open(os.path.join(cfg.record_path, 'loss.txt'), 'a')
-    rcd_time = []
-    sum_time = 0
-    sum_loss = 0
-
-    # Initialize the model components
-    if cfg.MODEL.scale == "base":
+def build_learner(cfg):
+    backbone = cfg.MODEL.get("backbone", "stunet")
+    if backbone == "mednext":
+        from ..mim_cnn.mednext_encoder import MedNeXtEncoder
+        if cfg.MODEL.patch_size != 16 or cfg.MODEL.img_size < 32 or cfg.MODEL.img_size % 16:
+            raise ValueError("MedNeXt requires patch_size=16 and img_size divisible by 16 (at least 32)")
+        head = MedNeXtEncoder(scale=cfg.MODEL.scale)
+    elif backbone != "stunet":
+        raise ValueError(f"Unsupported CNN backbone: {backbone}")
+    elif cfg.MODEL.scale == "base":
         head = STUNet_base(1, 1)
     elif cfg.MODEL.scale == "small":
         head = STUNet_small(1, 1)
@@ -51,10 +54,18 @@ def loop(cfg, train_provider, iters, writer):
     enc = SparseEncoder(head, input_size=input_size, sbn=False)
     dec = LightDecoder(enc.downsample_ratio, sbn=False, width=512, out_channel=1)
 
-    learner = SparK(
+    return SparK(
         sparse_encoder=enc, dense_decoder=dec, mask_ratio=cfg.TRAIN.mask_ratio,
         densify_norm='in'
     )
+
+
+def loop(cfg, train_provider, iters, writer):
+    learner = build_learner(cfg)
+    f_loss_txt = open(os.path.join(cfg.record_path, 'loss.txt'), 'a')
+    rcd_time = []
+    sum_time = 0
+    sum_loss = 0
 
     if cfg.MODEL.continue_train:
         ckpt_path = cfg.MODEL.continue_path
@@ -72,9 +83,11 @@ def loop(cfg, train_provider, iters, writer):
     learner_ema.decay = 0.999
 
     optimizer = torch.optim.AdamW(learner.parameters(), lr=cfg.TRAIN.base_lr, betas=(0.9, 0.999))
+    amp = cfg.TRAIN.get("amp", False)
+    scaler = GradScaler(enabled=amp)
 
 
-    while iters <= cfg.TRAIN.total_iters:
+    while iters < cfg.TRAIN.total_iters:
         learner.train()
         iters += 1
         t1 = time.time()
@@ -85,10 +98,11 @@ def loop(cfg, train_provider, iters, writer):
         recon_loss_list = []
         non_active_list = []
         for _ in range(cfg.TRAIN.loss_forward):
-            mask_n = learner.mask(cfg.TRAIN.batch_size, 'cuda:0')
-            with torch.no_grad():
+            mask_n = learner.mask(inp.shape[0], inp.device)
+            with torch.no_grad(), autocast(enabled=amp):
                 inp1, rec1 = learner_ema.ema(inp, active_b1ff=mask_n, vis=False)
-                l2_loss = ((rec1 - inp1) ** 2).mean(dim=2, keepdim=False)
+            with torch.no_grad():
+                l2_loss = ((rec1.float() - inp1) ** 2).mean(dim=2, keepdim=False)
                 non_active_n = mask_n.logical_not().int().view(mask_n.shape[0], -1)
                 recon_loss_n = l2_loss * non_active_n
                 recon_loss_list.append(recon_loss_n)
@@ -106,11 +120,15 @@ def loop(cfg, train_provider, iters, writer):
         mask2 = learner_ema.ema.generate_mask_alm(recon_loss, step=iters, total_step=cfg.TRAIN.total_iters, alpha_t=cfg.TRAIN.alpha_t)
         mask2 = mask2.to('cuda:0', non_blocking=True)
         non_active2 = mask2.logical_not().int().view(mask2.shape[0], -1)
-        inpp2, recc2 = learner(inp, active_b1ff=mask2, vis=False)
+        with autocast(enabled=amp):
+            inpp2, recc2 = learner(inp, active_b1ff=mask2, vis=False)
+        recc2 = recc2.float()
         loss1, _ = learner.forward_loss(inpp2, recc2, mask2)
         ######### Membrane Branch #########
         mask3 = learner.generate_mask_mam(att, step=iters, total_step=cfg.TRAIN.total_iters, alpha_t=cfg.TRAIN.alpha_t)
-        inpp3, recc3 = learner(inp, active_b1ff=mask3, vis=False)
+        with autocast(enabled=amp):
+            inpp3, recc3 = learner(inp, active_b1ff=mask3, vis=False)
+        recc3 = recc3.float()
         non_active3 = mask3.logical_not().int().view(mask3.shape[0], -1)
         loss2, _ = learner.forward_loss(inpp3, recc3, mask3)
         ######### Cross-Branch Consistency #########
@@ -121,10 +139,12 @@ def loop(cfg, train_provider, iters, writer):
         loss3 = 0.5 * l2_c1 + 0.5 * l2_c2
         ######### Total Loss #########
         loss = loss1 + loss2 + loss3
-        loss.backward()
-        # torch.nn.utils.clip_grad_norm_(learner.parameters(), 12).item()
-        optimizer.step()
-        learner_ema.update(learner)
+        scale_before = scaler.get_scale()
+        scaler.scale(loss).backward()
+        scaler.step(optimizer)
+        scaler.update()
+        if scaler.get_scale() >= scale_before:
+            learner_ema.update(learner)
 
         sum_loss += loss.item()
         sum_time += time.time() - t1
@@ -155,10 +175,15 @@ def loop(cfg, train_provider, iters, writer):
         if iters % cfg.TRAIN.valid_freq == 0 or iters == 1:
             visual_2d(learner, inp, cfg.cache_path, iters)
         # save
-        if iters % cfg.TRAIN.save_freq == 0:
+        if iters % cfg.TRAIN.save_freq == 0 or iters == cfg.TRAIN.total_iters:
             states = {'current_iter': iters, 'valid_result': None,
                       'model_weights': learner.state_dict()}
             torch.save(states, os.path.join(cfg.save_path, 'learner.ckpt'))
+            if cfg.MODEL.get("backbone") == "mednext":
+                torch.save(
+                    learner_ema.ema.sparse_encoder.sp_cnn.state_dict(),
+                    os.path.join(cfg.save_path, "mednext_encoder.ckpt"),
+                )
             print('***************save modol, iters = %d.***************' % (iters), flush=True)
 
     f_loss_txt.close()
